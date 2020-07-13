@@ -20,26 +20,35 @@ public class LoginServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		System.out.println("Aqui viene el usuario desde el servicio -> " + username);
+		Usuario usuario = usuarioRepository.buscarUsuarioClaveEstadoPorUsuario(username);
+
+		boolean estado = false;
 		
-		Usuario usuario =usuarioRepository.buscarUsuarioClaveEstadoPorUsuario(username);
-		System.out.println(usuario);
-		
-		boolean estado = true;
-		
-		List<GrantedAuthority> lstRole = new ArrayList<>();
-		
-		SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_ESTUDIANTE");
-		
-		lstRole.add(authority);
-		
-		String clave = "$2a$10$TeQe.doJWrSuUIGDDClxAeVtbRlqlQ5xExaByisnog.AKIhMD6mmO";
-		
-		return new User(username, clave, estado, true, true, true, lstRole);
+		if (usuario.getEstado() == 1) {
+			estado = true;
+		}
+
+		List<GrantedAuthority> lstRole = buscarRolePorUsuario(username);
+
+		return new User(username, usuario.getClave(), estado, true, true, true, lstRole);
+
 	}
 
+	private List<GrantedAuthority> buscarRolePorUsuario(String usuario) {
+
+		List<String> lstStr = usuarioRepository.buscarRolePorUsuario(usuario);
+		List<GrantedAuthority> lstRole = new ArrayList<>();
+
+		for (String role : lstStr) {
+
+			lstRole.add(new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()));
+
+		}
+
+		return lstRole;
+	};
 }

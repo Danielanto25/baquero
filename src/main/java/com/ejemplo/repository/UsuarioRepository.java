@@ -22,27 +22,51 @@ public class UsuarioRepository {
 
 		MapSqlParameterSource parameter = new MapSqlParameterSource();
 		parameter.addValue("usuario", usuario);
-		
-		String sql="select usu_usuario,usu_clave,usu_estado from usuario where usu_usuario=:usuario";
-		
-		List<Usuario> lstUsuario = namedJdbcTemplate.query(sql, new RowMapper<Usuario>() {
+
+		String sql = "select usu_usuario,usu_clave,usu_estado from usuario where usu_usuario=:usuario";
+
+		List<Usuario> lstUsuario = namedJdbcTemplate.query(sql, parameter, new RowMapper<Usuario>() {
 
 			@Override
 			public Usuario mapRow(ResultSet rs, int rowNum) throws SQLException {
-				
-				Usuario user=new Usuario();
+
+				Usuario user = new Usuario();
 				user.setClave(rs.getString("usu_clave"));
 				user.setEstado(rs.getInt("usu_estado"));
 				user.setUsuario(rs.getString("usu_usuario"));
 				return user;
 			}
+
+		});
+
+		if (lstUsuario.size() == 0) {
+			throw new RuntimeException("el usuario no existe -> " + usuario);
+		}
+		return lstUsuario.get(0);
+	}
+	
+	public List<String> buscarRolePorUsuario(String usuario){
+		
+		MapSqlParameterSource parameter = new MapSqlParameterSource();
+		parameter.addValue("usuario", usuario);
+		
+		String sql="select r.role_nombre from usuario u inner join usuario_role ur on u.usu_codigo  = ur.usu_codigo \r\n" + 
+				"inner join role r on ur.rol_codigo  = r.rol_codigo  where u.usu_usuario  = :usuario";
+		
+		List<String> lstRole = namedJdbcTemplate.query(sql, parameter, new RowMapper<String>() {
+			
+			@Override
+			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+				String role = rs.getString("role_nombre");
+
+				return role;
+			}
 			
 		});
 		
-		if(lstUsuario.size()==0) {
-			throw new RuntimeException("el usuario no existe -> "+usuario);
-		}
-		
-		return lstUsuario.get(0);
+		return lstRole;
 	}
+	
+
 }
