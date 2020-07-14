@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 public class UsuarioRole {
 
 	private int codigo;
-	private Usuario usuario;
 	private Role role;
+	private Usuario user;
+	private int estado;
+	private String ip;
+	private String usuario;
+	private String cliente;
 }

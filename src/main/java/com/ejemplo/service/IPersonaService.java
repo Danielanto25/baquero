@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import com.ejemplo.model.Persona;
 
 public interface IPersonaService {
-		
-		void insertar(Persona persona, HttpServletRequest request);
 
-		List<Persona> select();
+	public void insert(Persona persona,HttpServletRequest request);
 
-		void update(Persona persona, HttpServletRequest request);
+	public List<Persona> select();
 
-		void delete(Persona persona, HttpServletRequest request);
-		
-	}
+	public void update(Persona persona,HttpServletRequest request);
+
+	public void delete(Persona persona,HttpServletRequest request);
+
+}

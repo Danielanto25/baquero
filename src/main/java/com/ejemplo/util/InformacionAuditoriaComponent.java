@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.ejemplo.dto.InfoAuditoria;
 
+
 @Component
 public class InformacionAuditoriaComponent {
 
@@ -33,5 +34,4 @@ public class InformacionAuditoriaComponent {
 		
 		return info;
 	}
-	
 }

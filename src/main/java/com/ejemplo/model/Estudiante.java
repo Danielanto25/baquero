@@ -3,16 +3,16 @@ package com.ejemplo.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor
-public class EstudianteCurso {
+@Data
+public class Estudiante {
 
 	private Integer codigo;
-	private EstudianteCalendario estudianteCalendario;
-	private Curso curso;
-	private float definitiva;
+	private Programa programa;
+	private Persona persona;
+	private int estado;
 	private String cliente;
 	private String ip;
 	private String usuario;
-	private int estado;
+
 }

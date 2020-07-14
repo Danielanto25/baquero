@@ -1,15 +1,19 @@
 package com.ejemplo.util;
 
+import org.springframework.stereotype.Component;
+
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
-import org.springframework.stereotype.Component;
+
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 @Component
 public class TokenHelperComponent {
@@ -38,20 +42,20 @@ public class TokenHelperComponent {
 
 		return dataToken;
 	}
-	
+
 	public String obtenerUsuarioDelToken(String token) {
-		
+
 		Map<String, Object> tokenDecoded = convertirAMap(token);
-		
+
 		return tokenDecoded.get("user_name").toString();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<String> obtenerRoles(String token) {
-		
+
 		Map<String, Object> tokenDecoded = convertirAMap(token);
-		
+
 		return (List<String>) tokenDecoded.get("authorities");
 	}
-	
+
 }

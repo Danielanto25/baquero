@@ -24,31 +24,35 @@ public class LoginServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+
 		Usuario usuario = usuarioRepository.buscarUsuarioClaveEstadoPorUsuario(username);
 
 		boolean estado = false;
-		
-		if (usuario.getEstado() == 1) {
-			estado = true;
+
+		if(usuario.getEstado()==1) {
+			estado=true;
 		}
 
-		List<GrantedAuthority> lstRole = buscarRolePorUsuario(username);
+		List<GrantedAuthority> lstRole = buscarRolePorUsuario(usuario.getUsuario());
+
+		//List<GrantedAuthority> lstRole = buscarRolePorUsuario(username);
+
 
 		return new User(username, usuario.getClave(), estado, true, true, true, lstRole);
-
 	}
 
 	private List<GrantedAuthority> buscarRolePorUsuario(String usuario) {
 
-		List<String> lstStr = usuarioRepository.buscarRolePorUsuario(usuario);
-		List<GrantedAuthority> lstRole = new ArrayList<>();
+		List<String> lstStrRole = usuarioRepository.buscarRolePorUsuario(usuario);
 
-		for (String role : lstStr) {
+		List<GrantedAuthority> lstGraRole=new ArrayList<GrantedAuthority>();
 
-			lstRole.add(new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()));
-
+		for(String role:lstStrRole) {
+			SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_"+role.toUpperCase());
+			lstGraRole.add(authority);
 		}
 
-		return lstRole;
-	};
+		return lstGraRole;
+
+	}
 }

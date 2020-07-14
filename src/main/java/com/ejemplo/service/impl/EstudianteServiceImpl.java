@@ -1,0 +1,70 @@
+package com.ejemplo.service.impl;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ejemplo.dto.InfoAuditoria;
+import com.ejemplo.model.Estudiante;
+import com.ejemplo.repository.EstudianteRepository;
+import com.ejemplo.service.IEstudianteService;
+import com.ejemplo.util.InformacionAuditoriaComponent;
+
+@Service
+public class EstudianteServiceImpl implements IEstudianteService{
+	
+	@Autowired
+	private EstudianteRepository repo;
+
+	@Autowired
+	private InformacionAuditoriaComponent informacionAuditoriaComponent;
+
+	
+	
+	
+	@Override
+	public List<Estudiante> listar() {
+		
+		return repo.listar();
+	}
+
+
+	@Override
+	public void insert(Estudiante estudiante, HttpServletRequest request) {
+		
+		llenarDatosAuditoria(estudiante, request);
+		
+		repo.insert(estudiante);
+	}
+
+
+	@Override
+	public void update(Estudiante estudiante, HttpServletRequest request) {
+		
+		llenarDatosAuditoria(estudiante, request);
+		
+		repo.update(estudiante);
+	}
+
+
+	@Override
+	public void delete(Estudiante estudiante, HttpServletRequest request) {
+		
+		llenarDatosAuditoria(estudiante, request);
+		
+		repo.update(estudiante);
+	}
+
+	private void llenarDatosAuditoria(Estudiante estudiante, HttpServletRequest request) {
+
+		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+
+		estudiante.setCliente(infoAuditoria.getCliente());
+		estudiante.setIp(infoAuditoria.getIp());
+		estudiante.setUsuario(infoAuditoria.getUsuario());
+
+	}
+}

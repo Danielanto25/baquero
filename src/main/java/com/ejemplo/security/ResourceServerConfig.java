@@ -34,8 +34,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests().antMatchers("/oauth/token").permitAll()
-				
-				.antMatchers("/api/persona/**").hasAnyRole(Role.ADMIN)
+
+				//.antMatchers("/api/persona/**").hasAnyRole(Role.ADMIN)
+				//.antMatchers("/api/estudiante-curso/**").hasAnyRole(Role.ESTUDIANTE)
 				
 				.and().cors().configurationSource(corsConfigurationSource());
 	}
