@@ -26,10 +26,10 @@ class UniversidadApplicationTests {
 		System.out.println(clave);
 		System.out.println(secret);
 	}
-	
+
 	//@Test
 	public void prueba() throws Exception {
-		
+
 		 String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=universidad;user=sa;password=123456";
 
 	        try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {

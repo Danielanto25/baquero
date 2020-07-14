@@ -11,7 +11,7 @@ import com.ejemplo.dto.InfoAuditoria;
 
 @Component
 public class InformacionAuditoriaComponent {
-	
+
 	@Autowired
 	private TokenHelperComponent tokenConverter;
 	

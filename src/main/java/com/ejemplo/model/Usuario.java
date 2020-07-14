@@ -16,6 +16,6 @@ public class Usuario {
 	private String cliente;
 	private String ip;
 	private String usuarioUsuario;
-	 
+
 	
 }
