@@ -60,7 +60,7 @@ public class EstudianteServiceImpl implements IEstudianteService{
 
 	private void llenarDatosAuditoria(Estudiante estudiante, HttpServletRequest request) {
 
-		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+		InfoAuditoria infoAuditoria  = informacionAuditoriaComponent.getInfoAuditoria(request);
 
 		estudiante.setCliente(infoAuditoria.getCliente());
 		estudiante.setIp(infoAuditoria.getIp());

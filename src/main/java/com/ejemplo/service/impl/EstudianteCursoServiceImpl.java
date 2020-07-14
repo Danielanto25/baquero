@@ -62,7 +62,7 @@ public class EstudianteCursoServiceImpl implements IEstudianteCursoService{
 	}
 	private void llenarDatosAuditoria(EstudianteCurso estudianteCurso, HttpServletRequest request) {
 
-		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+		InfoAuditoria  infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
 
 		estudianteCurso.setCliente(infoAuditoria.getCliente());
 		estudianteCurso.setIp(infoAuditoria.getIp());

@@ -60,7 +60,7 @@ public class EstudianteCalendarioServiceImpl implements IEstudianteCalendarioSer
 	
 	private void llenarDatosAuditoria(EstudianteCalendario estudianteCalendario, HttpServletRequest request) {
 
-		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+		InfoAuditoria infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
 
 		estudianteCalendario.setCliente(infoAuditoria.getCliente());
 		estudianteCalendario.setIp(infoAuditoria.getIp());

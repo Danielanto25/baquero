@@ -59,7 +59,7 @@ public class CursoServiceImpl implements ICursoService{
 
 	private void llenarDatosAuditoria(Curso curso, HttpServletRequest request) {
 
-		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+		InfoAuditoria infoAuditoria  = informacionAuditoriaComponent.getInfoAuditoria(request);
 
 		curso.setCliente(infoAuditoria.getCliente());
 		curso.setIp(infoAuditoria.getIp());

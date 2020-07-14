@@ -57,7 +57,7 @@ public class PersonaServiceImpl implements IPersonaService {
 
 	private void llenarDatosAuditoria(Persona persona, HttpServletRequest request) {
 
-		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+		InfoAuditoria infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
 
 		persona.setCliente(infoAuditoria.getCliente());
 		persona.setIp(infoAuditoria.getIp());

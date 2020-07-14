@@ -56,7 +56,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	private void llenarDatosAuditoria(Usuario user, HttpServletRequest request) {
 
-		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+		InfoAuditoria infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
 
 		user.setCliente(infoAuditoria.getCliente());
 		user.setIp(infoAuditoria.getIp());
