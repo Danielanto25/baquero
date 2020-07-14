@@ -11,5 +11,8 @@ public class EstudianteCurso {
 	private EstudianteCalendario estudianteCalendario;
 	private Curso curso;
 	private float definitiva;
-	
+	private String cliente;
+	private String ip;
+	private String usuario;
+	private int estado;
 }

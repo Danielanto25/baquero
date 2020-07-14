@@ -8,4 +8,8 @@ import lombok.NoArgsConstructor;
 public class Calendario {
 	private Integer codigo;
 	private String nombre;
+	private int estado;
+	private String cliente;
+	private String usuario;
+	private String ip;
 }

@@ -9,4 +9,8 @@ public class Role {
 	
 	private int codigo;
 	private String nombre;
+	private String cliente;
+	private String ip;
+	private String usuario;
+	private int estado;
 }

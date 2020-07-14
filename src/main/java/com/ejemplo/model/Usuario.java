@@ -1,3 +1,4 @@
+
 package com.ejemplo.model;
 
 import lombok.Data;
@@ -12,6 +13,9 @@ public class Usuario {
 	private String clave;
 	private Persona persona;
 	private int estado;
-	
+	private String cliente;
+	private String ip;
+	private String usuarioUsuario;
+	 
 	
 }

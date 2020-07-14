@@ -10,5 +10,9 @@ public class EstudianteCalendario {
 	private Integer codigo;
 	private Calendario calendario;
 	private Estudiante estudiante;
+	private int estado;
+	private String cliente;
+	private String usuario;
+	private String ip;
 
 }

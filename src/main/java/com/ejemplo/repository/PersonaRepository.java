@@ -78,7 +78,7 @@ public class PersonaRepository {
 		parameter.addValue("codigo", persona.getCodigo());
 		
 		String sql="update persona set per_nombre=:nombre,per_apellido=:apellido,per_identificacion=:identificacion,"
-				+ "per_ip=:ip,per_usuario=:usuario,per_cliente=:cliente,per_estado=:estado where codigo=:codigo ";
+				+ "per_ip=:ip,per_usuario=:usuario,per_cliente=:cliente,per_estado=:estado where per_codigo=:codigo ";
 		
 		namedJdbcTemplate.update(sql, parameter);
 	}
@@ -92,7 +92,7 @@ public class PersonaRepository {
 		parameter.addValue("usuario", persona.getUsuario());
 		parameter.addValue("cliente", persona.getCliente());
 		
-		String sql="update persona set per_estado=:estado,per_ip=:ip,per_usuario=:usuario,per_cliente=:cliente where codigo=:codigo ";
+		String sql="update persona set per_estado=:estado,per_ip=:ip,per_usuario=:usuario,per_cliente=:cliente where per_codigo=:codigo ";
 		
 		namedJdbcTemplate.update(sql, parameter);
 		

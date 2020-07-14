@@ -9,5 +9,9 @@ public class Programa {
 	
 	private Integer codigo;
 	private String nombre;
+	private int estado;
+	private String cliente;
+	private String ip;
+	private String usuario;
 
 }
