@@ -67,4 +67,11 @@ public class EstudianteServiceImpl implements IEstudianteService{
 		estudiante.setUsuario(infoAuditoria.getUsuario());
 
 	}
+
+
+	@Override
+	public Estudiante listarCodigo(String usuario) {
+		
+		return repo.listarCodigo(usuario);
+	}
 }

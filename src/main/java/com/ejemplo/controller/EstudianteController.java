@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,5 +42,11 @@ public class EstudianteController {
 	@PutMapping(path = "update")
 	public void update(@RequestBody Estudiante estudiante, HttpServletRequest request) {
 		service.update(estudiante,request);
+	}
+	
+	@GetMapping(path = "listar-codigo/{usuario}")
+	public Estudiante listarCodigo(@PathVariable String usuario) {
+
+		return service.listarCodigo(usuario);
 	}
 }

@@ -26,15 +26,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 
+		
+		
 		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthonticated()");
 	}
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		
+		int tiempoExpiracionToken =Integer.parseInt(env.getProperty("config.security.oauth.jwt.token.seconds"));
+		
 		clients.inMemory().withClient(env.getProperty("config.security.oauth.client.id"))
 				.secret(env.getProperty("config.security.oauth.client.secret")).scopes("read", "write")
-				.authorizedGrantTypes("password").accessTokenValiditySeconds(60 * 60 * 12);
+				.authorizedGrantTypes("password").accessTokenValiditySeconds(tiempoExpiracionToken);
 	}
 
 	@Override

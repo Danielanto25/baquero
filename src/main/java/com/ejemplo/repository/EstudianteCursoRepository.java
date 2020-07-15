@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -62,7 +65,8 @@ public class EstudianteCursoRepository {
 				});
 
 		if (lstEstudianteCuerso.size() == 0) {
-			throw new RuntimeException("el estudiante no existe o no tiene cursos registrados -> " + estudiante);
+			System.out.println("Aqui llego el error");
+			throw new EntityNotFoundException("el estudiante no existe o no tiene cursos registrados -> " + estudiante);
 		}
 
 		return lstEstudianteCuerso;
