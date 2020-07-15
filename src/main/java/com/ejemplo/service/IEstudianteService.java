@@ -15,4 +15,6 @@ public interface IEstudianteService {
 	public void update(Estudiante estudiante, HttpServletRequest request);
 
 	public void delete(Estudiante estudiante, HttpServletRequest request);
+
+	public Estudiante listarCodigo(String usuario);
 }

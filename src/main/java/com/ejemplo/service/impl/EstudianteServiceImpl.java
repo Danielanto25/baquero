@@ -60,11 +60,18 @@ public class EstudianteServiceImpl implements IEstudianteService{
 
 	private void llenarDatosAuditoria(Estudiante estudiante, HttpServletRequest request) {
 
-		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+		InfoAuditoria infoAuditoria  = informacionAuditoriaComponent.getInfoAuditoria(request);
 
 		estudiante.setCliente(infoAuditoria.getCliente());
 		estudiante.setIp(infoAuditoria.getIp());
 		estudiante.setUsuario(infoAuditoria.getUsuario());
 
+	}
+
+
+	@Override
+	public Estudiante listarCodigo(String usuario) {
+		
+		return repo.listarCodigo(usuario);
 	}
 }

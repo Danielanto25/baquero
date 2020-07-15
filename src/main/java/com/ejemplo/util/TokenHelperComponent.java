@@ -2,7 +2,6 @@ package com.ejemplo.util;
 
 import org.springframework.stereotype.Component;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,10 +9,9 @@ import java.util.Map;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
 
-
+import com.ejemplo.exception.JsonParserException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 @Component
 public class TokenHelperComponent {
@@ -36,7 +34,7 @@ public class TokenHelperComponent {
 		} catch (JsonProcessingException e) {
 
 			e.printStackTrace();
-			throw new RuntimeException(
+			throw new JsonParserException(
 					String.format("No se ha podido parsear el token a object -> %s", jwt.getClaims()));
 		}
 
