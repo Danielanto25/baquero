@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class JasperData {
-	
+
 	private String pathJrxml;
-	private Map<String,Object> dataSource;
+	private Map<String, Object> dataSource;
 	private HttpServletResponse response;
+
 }
-	

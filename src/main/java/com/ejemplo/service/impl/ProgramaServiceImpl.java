@@ -26,6 +26,8 @@ public class ProgramaServiceImpl implements IProgramaService{
 	@Override
 	public void insert(Programa programa, HttpServletRequest request) {
 		
+		llenarDatosAuditoria(programa, request);
+		
 		repo.insert(programa);
 	}
 
@@ -38,18 +40,22 @@ public class ProgramaServiceImpl implements IProgramaService{
 	@Override
 	public void update(Programa programa, HttpServletRequest request) {
 		
+		llenarDatosAuditoria(programa, request);
+		
 		repo.update(programa);
 	}
 
 	@Override
 	public void delete(Programa programa, HttpServletRequest request) {
 		
+		llenarDatosAuditoria(programa, request);
+		
 		repo.delete(programa);
 	}
 	
 	private void llenarDatosAuditoria(Programa programa, HttpServletRequest request) {
 
-		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+		InfoAuditoria infoAuditoria  = informacionAuditoriaComponent.getInfoAuditoria(request);
 
 		programa.setCliente(infoAuditoria.getCliente());
 		programa.setIp(infoAuditoria.getIp());

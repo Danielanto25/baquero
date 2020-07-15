@@ -21,7 +21,6 @@ import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 import net.sf.jasperreports.export.SimplePdfReportConfiguration;
 import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
-
 @Component
 public class JasperReportComponent {
 

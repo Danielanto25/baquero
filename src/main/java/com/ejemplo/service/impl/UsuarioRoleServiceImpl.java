@@ -64,7 +64,7 @@ public class UsuarioRoleServiceImpl implements IUsuarioRoleService{
 	
 	private void llenarDatosAuditoria(UsuarioRole usuarioRole, HttpServletRequest request) {
 
-		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+		InfoAuditoria  infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
 
 		usuarioRole.setCliente(infoAuditoria.getCliente());
 		usuarioRole.setIp(infoAuditoria.getIp());

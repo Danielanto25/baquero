@@ -58,7 +58,7 @@ public class CalendarioServiceImpl implements ICalendarioService{
 	
 	private void llenarDatosAuditoria(Calendario calendario, HttpServletRequest request) {
 
-		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+		InfoAuditoria infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
 
 		calendario.setCliente(infoAuditoria.getCliente());
 		calendario.setIp(infoAuditoria.getIp());

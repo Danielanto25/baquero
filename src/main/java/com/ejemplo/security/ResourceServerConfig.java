@@ -35,8 +35,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers("/oauth/token").permitAll()
 
-				//.antMatchers("/api/persona/**").hasAnyRole(Role.ADMIN)
-				//.antMatchers("/api/estudiante-curso/**").hasAnyRole(Role.ESTUDIANTE)
+				.antMatchers("/api/persona/**").hasAnyRole(Role.ADMIN)
+				.antMatchers("/api/estudiante-curso/**").hasAnyRole(Role.ESTUDIANTE)
+				.antMatchers("/api/programa").hasAnyRole(Role.ADMIN)
 				
 				.and().cors().configurationSource(corsConfigurationSource());
 	}

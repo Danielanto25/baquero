@@ -15,32 +15,30 @@ import org.springframework.web.context.request.WebRequest;
 import com.ejemplo.dto.MensajeError;
 import com.ejemplo.exception.JsonParserException;
 
-@ControllerAdvice
 @RestController
+@ControllerAdvice
 public class ExceptionHandlerController {
+
+	/*@ExceptionHandler(Exception.class)
+	public final ResponseEntity<MensajeError> handleAllException(Exception ex, WebRequest request) {
+
+		return this.contruirMensajeError(ex, request, "Error interno.", HttpStatus.INTERNAL_SERVER_ERROR);
+	}*/
 
 	@ExceptionHandler(EntityNotFoundException.class)
 	public final ResponseEntity<MensajeError> handleEntityNotFoundException(EntityNotFoundException ex, WebRequest request) {
-		
-		System.out.println("no encontrado");
+
 		return this.contruirMensajeError(ex, request, "Recurso no encontrado", HttpStatus.NOT_FOUND);
 	}
-	
-	/*@ExceptionHandler(Exception.class)
-	public final ResponseEntity<MensajeError> handleAllException(Exception ex, WebRequest request) {
-		
-		System.out.println("interno");
-		return this.contruirMensajeError(ex, request, "Error interno.", HttpStatus.INTERNAL_SERVER_ERROR);
-		
-	}
-	*/
+
 	@ExceptionHandler(JsonParserException.class)
 	public final ResponseEntity<MensajeError> handleJsonParserException(JsonParserException ex, WebRequest request) {
-		
-		return this.contruirMensajeError(ex, request, "Error al parsear el Json", HttpStatus.NOT_FOUND);
+
+		return this.contruirMensajeError(ex, request, "Recurso no encontrado", HttpStatus.NOT_FOUND);
 	}
-	
-	
+
+
+
 	private ResponseEntity<MensajeError> contruirMensajeError(Exception ex, WebRequest request, String strMensaje,
 			HttpStatus status) {
 
@@ -55,6 +53,4 @@ public class ExceptionHandlerController {
 
 		return new ResponseEntity<>(mensaje, status);
 	}
-	
-	
 }

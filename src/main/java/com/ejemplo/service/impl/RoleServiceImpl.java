@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ejemplo.dto.InfoAuditoria;
-import com.ejemplo.model.EstudianteCurso;
 import com.ejemplo.model.Role;
 import com.ejemplo.repository.RoleRepository;
 import com.ejemplo.service.IRoleService;
@@ -57,7 +56,7 @@ public class RoleServiceImpl implements IRoleService{
 	
 	private void llenarDatosAuditoria(Role role, HttpServletRequest request) {
 
-		InfoAuditoria infoAuditoria = infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
+		InfoAuditoria  infoAuditoria = informacionAuditoriaComponent.getInfoAuditoria(request);
 
 		role.setCliente(infoAuditoria.getCliente());
 		role.setIp(infoAuditoria.getIp());
