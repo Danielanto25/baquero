@@ -40,10 +40,11 @@ public class EstudianteCursoRepository {
 	}
 
 	public List<EstudianteCurso> listarCursosPorEstudiante(Integer estudiante) {
+		
 		MapSqlParameterSource parameter = new MapSqlParameterSource();
 		parameter.addValue("codigo", estudiante);
 
-		String sql = "\r\n" + "select cur_nombre from  estudiante  join "
+		String sql = "\r\n" + "select cur_nombre, ecu_definitiva from estudiante  join "
 				+ "estudiante_calendario on estudiante.est_codigo=estudiante_calendario.est_codigo join "
 				+ "estudiante_curso on estudiante_calendario.esc_codigo =estudiante_curso.esc_codigo join"
 				+ " curso on  estudiante_curso.cur_codigo=curso.cur_codigo where estudiante.est_codigo=:codigo";
@@ -57,7 +58,10 @@ public class EstudianteCursoRepository {
 						EstudianteCurso estudianteCurso = new EstudianteCurso();
 						Curso curso = new Curso();
 						curso.setNombre(rs.getString("cur_nombre"));
+						estudianteCurso.setDefinitiva(rs.getFloat("ecu_definitiva"));
 						estudianteCurso.setCurso(curso);
+						
+						System.out.println(estudianteCurso);
 
 						return estudianteCurso;
 					}

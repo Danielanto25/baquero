@@ -20,4 +20,6 @@ public interface IEstudianteCursoService {
 	public List<EstudianteCurso> listar();
 
 	public void cursosPdf(HttpServletResponse response,Integer codigo);
+	
+	public void notasPdf(HttpServletResponse response,Integer codigo);
 }

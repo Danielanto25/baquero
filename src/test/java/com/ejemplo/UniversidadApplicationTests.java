@@ -20,7 +20,7 @@ class UniversidadApplicationTests {
 	@Test
 	void contextLoads() {
 
-		String clave = encoder.encode("hola");
+		String clave = encoder.encode("123456789");
 		String secret = encoder.encode("secret123");
 
 		System.out.println(clave);

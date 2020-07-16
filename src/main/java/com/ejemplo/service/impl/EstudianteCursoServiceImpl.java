@@ -103,5 +103,28 @@ public class EstudianteCursoServiceImpl implements IEstudianteCursoService{
 
 	}
 
+	@Override
+	public void notasPdf(HttpServletResponse response, Integer codigo) {
+		
+		List<EstudianteCurso> lstCursos = listarCursosPorEstudiante(codigo);
+
+		JasperData jasper = new JasperData();
+
+		Map<String, Object> dataSource = new HashMap<>();
+
+		dataSource.put("estudiante", lstCursos);
+
+		jasper.setPathJrxml("/static/reportes/pdf/notas.jrxml");
+		jasper.setResponse(response);
+		jasper.setDataSource(dataSource);
+
+		try {
+			jasperComponent.exportToPdf(jasper);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 
 }

@@ -3,6 +3,7 @@ package com.ejemplo.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,11 +68,11 @@ public class EstudianteCursoController {
 		service.cursosPdf(response, codigo);
 
 	}
+	
+	@GetMapping(path = "generar-pdf/{codigo}")
+	public void notasPdf(HttpServletResponse response, @PathVariable Integer codigo) {
 
+		service.notasPdf(response, codigo);
 
-	@GetMapping(path = "cursos")
-	public void cursos() {
-		token.convertirAMap("hola");
 	}
-
 }
