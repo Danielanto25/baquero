@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ejemplo.dto.InfoAuditoria;
+import com.ejemplo.model.Estudiante;
 import com.ejemplo.model.EstudianteCurso;
 import com.ejemplo.repository.EstudianteCursoRepository;
+import com.ejemplo.repository.EstudianteRepository;
 import com.ejemplo.service.IEstudianteCursoService;
 import com.ejemplo.util.InformacionAuditoriaComponent;
 import com.ejemplo.util.JasperReportComponent;
@@ -31,6 +33,9 @@ public class EstudianteCursoServiceImpl implements IEstudianteCursoService{
 
 	@Autowired
 	private JasperReportComponent jasperComponent;
+	
+	@Autowired
+	private EstudianteRepository estudianteRepo;
 	
 	@Override
 	public void insert(EstudianteCurso estudiantecurso, HttpServletRequest request) {
@@ -75,12 +80,16 @@ public class EstudianteCursoServiceImpl implements IEstudianteCursoService{
 
 		// List<TotalExperiencia> lstTotalExp = tiempoIndividual();
 		List<EstudianteCurso> lstCursos = listarCursosPorEstudiante(codigo);
-
+		
+		Estudiante estudiante= estudianteRepo.listarPorCodigo(codigo);
+		
 		JasperData jasper = new JasperData();
 
 		Map<String, Object> dataSource = new HashMap<>();
 
 		dataSource.put("materias", lstCursos);
+		dataSource.put("codigo", codigo);
+		dataSource.put("nombre", estudiante.getPersona().getNombre());
 
 		jasper.setPathJrxml("/static/reporte/pdf/reporte2.jrxml");
 		jasper.setResponse(response);

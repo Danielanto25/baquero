@@ -55,7 +55,7 @@ public class EstudianteServiceImpl implements IEstudianteService{
 		
 		llenarDatosAuditoria(estudiante, request);
 		
-		repo.update(estudiante);
+		repo.delete(estudiante);
 	}
 
 	private void llenarDatosAuditoria(Estudiante estudiante, HttpServletRequest request) {
