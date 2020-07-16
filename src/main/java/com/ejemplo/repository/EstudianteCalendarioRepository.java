@@ -91,6 +91,7 @@ public class EstudianteCalendarioRepository {
 				EstudianteCalendario estudianteCalendario = new EstudianteCalendario();
 				estudianteCalendario.setCodigo(rs.getInt("esc_codigo"));
 				estudianteCalendario.setEstado(rs.getInt("esc_estado"));
+				estudianteCalendario.setCalendario(calendario);
 				estudianteCalendario.setEstudiante(estudiante);
 
 				return estudianteCalendario;

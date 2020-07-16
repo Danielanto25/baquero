@@ -70,6 +70,7 @@ public class EstudianteRepository {
 				estudiante.setPrograma(programa);
 				estudiante.setPersona(persona);
 				estudiante.setCodigo(rs.getInt("est_codigo"));
+				estudiante.setEstado(rs.getInt("est_estado"));
 
 				return estudiante;
 			}
@@ -77,6 +78,41 @@ public class EstudianteRepository {
 		});
 
 		return lstEstudiante;
+
+	}
+	
+	public Estudiante listarPorCodigo(Integer codigo) {
+
+		String sql = "SELECT *  from persona p join estudiante e on e.per_codigo = p.per_codigo join programa pr on e.pro_codigo = pr.pro_codigo where est_codigo=:codigo";
+
+		MapSqlParameterSource parameter = new MapSqlParameterSource();
+		parameter.addValue("codigo", codigo);
+		
+		List<Estudiante> lstEstudiante = namedJdbcTemplate.query(sql,parameter, new RowMapper<Estudiante>() {
+
+			@Override
+			public Estudiante mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+				Programa programa = new Programa();
+				programa.setNombre(rs.getString("pro_nombre"));
+				programa.setCodigo(rs.getInt("pro_codigo"));
+
+				Persona persona = new Persona();
+				persona.setNombre(rs.getString("per_nombre"));
+				persona.setCodigo(rs.getInt("per_codigo"));
+
+				Estudiante estudiante = new Estudiante();
+				estudiante.setPrograma(programa);
+				estudiante.setPersona(persona);
+				estudiante.setCodigo(rs.getInt("est_codigo"));
+				estudiante.setEstado(rs.getInt("est_estado"));
+
+				return estudiante;
+			}
+
+		});
+
+		return lstEstudiante.get(0);
 
 	}
 

@@ -38,6 +38,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers("/api/persona/**").hasAnyRole(Role.ADMIN)
 				.antMatchers("/api/estudiante-curso/**").hasAnyRole(Role.ESTUDIANTE)
 				.antMatchers("/api/programa").hasAnyRole(Role.ADMIN)
+				.antMatchers("/api/estudiante/**").hasAnyRole(Role.ADMIN)
 				
 				.and().cors().configurationSource(corsConfigurationSource());
 	}

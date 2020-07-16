@@ -31,16 +31,19 @@ public class EstudianteController {
 	
 	@PutMapping(path = "delete")
 	public void delete(@RequestBody Estudiante estudiante, HttpServletRequest request) {
+		
 		service.delete(estudiante,request);
 	}
 	
 	@PostMapping(path = "insert")
 	public void insert(@RequestBody Estudiante estudiante, HttpServletRequest request) {
+		
 		service.insert(estudiante,request);
 	}
 	
 	@PutMapping(path = "update")
 	public void update(@RequestBody Estudiante estudiante, HttpServletRequest request) {
+		
 		service.update(estudiante,request);
 	}
 	
