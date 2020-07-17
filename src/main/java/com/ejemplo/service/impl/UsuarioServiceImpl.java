@@ -60,7 +60,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 		user.setCliente(infoAuditoria.getCliente());
 		user.setIp(infoAuditoria.getIp());
-		user.setUsuario(infoAuditoria.getUsuario());
+		user.setUsuarioUsuario(infoAuditoria.getUsuario());
 
 	}
 

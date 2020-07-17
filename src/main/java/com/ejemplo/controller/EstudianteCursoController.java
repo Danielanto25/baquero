@@ -29,7 +29,7 @@ public class EstudianteCursoController {
 	private TokenHelperComponent token;
 
 	@GetMapping(path = "listar-cursos-estudiante/{estudiante}")
-	public List<EstudianteCurso> listar(@PathVariable Integer estudiante) {
+	public List<EstudianteCurso> listarPorEstudiante(@PathVariable Integer estudiante) {
 
 		return service.listarCursosPorEstudiante(estudiante);
 
@@ -56,10 +56,10 @@ public class EstudianteCursoController {
 
 	}
 
-	@GetMapping(path = "select")
-	public List<EstudianteCurso> listar() {
+	@GetMapping(path = "select/{codigo}")
+	public List<EstudianteCurso> listar(@PathVariable Integer codigo) {
 
-		return service.listar();
+		return service.listar(codigo);
 	}
 
 	@GetMapping(path = "cursos-pdf/{codigo}")

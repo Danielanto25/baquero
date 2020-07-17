@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.ejemplo.model.Persona;
@@ -18,6 +19,8 @@ public class UsuarioRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate namedJdbcTemplate;
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
 	public Usuario buscarUsuarioClaveEstadoPorUsuario(String usuario) {
 
@@ -90,6 +93,7 @@ public class UsuarioRepository {
 				user.setEstado(rs.getInt("usu_estado"));
 				user.setUsuario(rs.getString("usu_usuario"));
 				user.setClave(rs.getString("usu_clave"));
+				user.setCodigo(rs.getInt("usu_codigo"));
 
 				return user;
 			}
@@ -103,7 +107,7 @@ public class UsuarioRepository {
 
 		MapSqlParameterSource parameter = new MapSqlParameterSource();
 
-		parameter.addValue("clave", usuario.getClave());
+		parameter.addValue("clave", encoder.encode(usuario.getClave()));
 		parameter.addValue("nombre", usuario.getUsuario());
 		parameter.addValue("ip", usuario.getIp());
 		parameter.addValue("usuario", usuario.getUsuarioUsuario());
@@ -122,7 +126,7 @@ public class UsuarioRepository {
 
 		MapSqlParameterSource parameter = new MapSqlParameterSource();
 
-		parameter.addValue("clave", usuario.getClave());
+		parameter.addValue("clave", encoder.encode(usuario.getClave()));
 		parameter.addValue("nombre", usuario.getUsuario());
 		parameter.addValue("ip", usuario.getIp());
 		parameter.addValue("usuario", usuario.getUsuarioUsuario());
@@ -131,8 +135,8 @@ public class UsuarioRepository {
 		parameter.addValue("persona", usuario.getPersona().getCodigo());
 		parameter.addValue("codigo", usuario.getCodigo());
 
-		String sql = "insert  usuario set usu_usuario=:nombre,usu_cliente=:cliente,usu_usu_usuario=:usuario,"
-				+ "usu_ip=:ip,usu_estado=:estado,usu_clave=:clave,per_codigo=:persona where usu_codigo=:codigo)";
+		String sql = "update usuario set usu_usuario=:nombre,usu_cliente=:cliente,usu_usu_usuario=:usuario,"
+				+ "usu_ip=:ip,usu_estado=:estado,usu_clave=:clave,per_codigo=:persona where usu_codigo=:codigo";
 
 		namedJdbcTemplate.update(sql, parameter);
 
@@ -148,11 +152,12 @@ public class UsuarioRepository {
 		parameter.addValue("estado", 0);
 		parameter.addValue("codigo", usuario.getCodigo());
 
-		String sql = "insert  usuario set usu_cliente=:cliente,usu_usu_usuario=:usuario,"
-				+ "usu_ip=:ip,usu_estado=:estadowhere usu_codigo=:codigo)";
+		String sql = "update usuario set usu_cliente=:cliente,usu_usu_usuario=:usuario,"
+				+ "usu_ip=:ip,usu_estado=:estado where usu_codigo=:codigo";
 
 		namedJdbcTemplate.update(sql, parameter);
 
 	}
+	
 
 }
