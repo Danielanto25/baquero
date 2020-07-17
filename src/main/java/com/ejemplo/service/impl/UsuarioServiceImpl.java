@@ -64,4 +64,10 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	}
 
+	@Override
+	public List<String> listarRole(String usuario) {
+		
+		return repo.buscarRolePorUsuario(usuario);
+	}
+
 }
