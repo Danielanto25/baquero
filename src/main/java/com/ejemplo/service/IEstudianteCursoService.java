@@ -17,7 +17,7 @@ public interface IEstudianteCursoService {
 
 	public void delete(EstudianteCurso estudianteCurso, HttpServletRequest request);
 
-	public List<EstudianteCurso> listar();
+	public List<EstudianteCurso> listar(Integer codigo);
 
 	public void cursosPdf(HttpServletResponse response,Integer codigo);
 }
