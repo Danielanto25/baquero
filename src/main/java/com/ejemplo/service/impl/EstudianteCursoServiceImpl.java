@@ -69,9 +69,9 @@ public class EstudianteCursoServiceImpl implements IEstudianteCursoService{
 	}
 
 	@Override
-	public List<EstudianteCurso> listar() {
+	public List<EstudianteCurso> listar(Integer codigo) {
 		
-		return estudianteCursoRepository.listar();
+		return estudianteCursoRepository.listar(codigo);
 	}
 	
 	
