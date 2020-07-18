@@ -62,9 +62,10 @@
 		</band>
 	</title>
 	<detail>
-		<band height="250" splitType="Stretch">
+		<band height="580" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
-				<reportElement positionType="Float" x="-6" y="70" width="551" height="180" uuid="7e9512d2-f05f-49d4-a15a-08f37234c866"/>
+				<reportElement positionType="Float" x="0" y="40" width="551" height="540" uuid="7e9512d2-f05f-49d4-a15a-08f37234c866"/>
 			</rectangle>
 			<componentElement>
 				<reportElement x="20" y="90" width="163" height="30" uuid="bdce4e9f-9cbb-408a-bb64-c943f0c5fe75"/>
@@ -84,7 +85,7 @@
 				</jr:list>
 			</componentElement>
 			<staticText>
-				<reportElement x="-20" y="0" width="595" height="61" uuid="ac8152ca-0492-4e25-a9cd-09425b6ca0ba"/>
+				<reportElement x="-20" y="-10" width="595" height="61" uuid="ac8152ca-0492-4e25-a9cd-09425b6ca0ba"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
 					<font fontName="Bodoni MT Poster Compressed" size="16"/>
 				</textElement>
