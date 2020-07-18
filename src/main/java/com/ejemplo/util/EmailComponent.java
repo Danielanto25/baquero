@@ -20,19 +20,18 @@ import com.ejemplo.dto.Email;
 
 import lombok.Data;
 
-
 @Component
 public class EmailComponent {
-	
-Logger logger = LoggerFactory.getLogger(EmailComponent.class);
-	
+
+	Logger logger = LoggerFactory.getLogger(EmailComponent.class);
+
 	public void enviar(Email email) {
-		
+
 		this.enviar(email, false);
 	}
-	
+
 	public void enviar(Email email, boolean lanzarError) {
-		
+
 		MimeMessagePreparator messagePreparator = mimeMessage -> {
 
 			MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
@@ -49,21 +48,22 @@ Logger logger = LoggerFactory.getLogger(EmailComponent.class);
 		} catch (MailException e) {
 			logger.error(email.toString());
 			e.printStackTrace();
-			
-			if(lanzarError) throw e;
+
+			if (lanzarError)
+				throw e;
 		}
 	}
-	
+
 	private String build(String descripcion) throws Exception {
 
 		String plantillaCorreo = this
-				.obtenerTextoDeArchivo(new ClassPathResource("static/email_template.html").getFile());
-		
+				.obtenerTextoDeArchivo(new ClassPathResource("static/correo.html").getFile());
+
 		plantillaCorreo = plantillaCorreo.replaceAll(":descripcion", descripcion);
 
 		return plantillaCorreo;
 	}
-	
+
 	private String obtenerTextoDeArchivo(File file) {
 
 		FileReader fr = null;
@@ -97,7 +97,7 @@ Logger logger = LoggerFactory.getLogger(EmailComponent.class);
 
 		return contenido;
 	}
-	
+
 	private JavaMailSender crearJavaMailSender() {
 
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -117,13 +117,11 @@ Logger logger = LoggerFactory.getLogger(EmailComponent.class);
 
 		return mailSender;
 	}
-	
+
 	private UserPass getEmailRandom() {
 
-		UserPass emails[] = { 
-				new UserPass("baquero610@gmail.com","Joseluis1155.")
-				};
-		
+		UserPass emails[] = { new UserPass("u20181168382@usco.edu.co", "danyertous123") };
+
 		Random random = new Random();
 		int n = random.nextInt(emails.length);
 
@@ -132,17 +130,15 @@ Logger logger = LoggerFactory.getLogger(EmailComponent.class);
 		return email;
 	}
 
-
 	@Data
 	private class UserPass {
-		
+
 		private String user;
 		private String pass;
-		
+
 		public UserPass(String user, String pass) {
 			this.user = user;
 			this.pass = pass;
 		}
 	}
-	
 }

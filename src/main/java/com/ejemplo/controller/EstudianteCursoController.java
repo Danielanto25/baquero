@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ejemplo.model.EstudianteCurso;
 import com.ejemplo.service.IEstudianteCursoService;
-import com.ejemplo.util.TokenHelperComponent;
 
 @RestController
 @RequestMapping(path = "api/estudiante-curso")
@@ -24,9 +23,6 @@ public class EstudianteCursoController {
 
 	@Autowired
 	private IEstudianteCursoService service;
-
-	@Autowired
-	private TokenHelperComponent token;
 
 	@GetMapping(path = "listar-cursos-estudiante/{estudiante}")
 	public List<EstudianteCurso> listarPorEstudiante(@PathVariable Integer estudiante) {

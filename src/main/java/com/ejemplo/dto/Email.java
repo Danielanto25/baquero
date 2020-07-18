@@ -6,9 +6,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Email {
-
-	private String destinatario[];
-	private String asunto;
-	private String descripcion;
 	
+	private	String asunto;
+	private	String descripcion;
+	private	String destinatario[];
 }
