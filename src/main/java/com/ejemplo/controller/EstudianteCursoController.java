@@ -24,10 +24,10 @@ public class EstudianteCursoController {
 
 	@Autowired
 	private IEstudianteCursoService service;
-	
+
 	@Autowired
 	private TokenHelperComponent token;
-	
+
 	@GetMapping(path = "listar-cursos-estudiante/{estudiante}")
 	public List<EstudianteCurso> listarPorEstudiante(@PathVariable Integer estudiante) {
 
@@ -69,9 +69,10 @@ public class EstudianteCursoController {
 
 	}
 	
-	@GetMapping(path = "cursos")
-	public void cursos() {
-		token.convertirAMap("hola");
-	}
+	@GetMapping(path = "generar-pdf/{codigo}")
+	public void notasPdf(HttpServletResponse response, @PathVariable Integer codigo) {
 
+		service.notasPdf(response, codigo);
+
+	}
 }

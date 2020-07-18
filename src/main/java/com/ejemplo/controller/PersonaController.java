@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ejemplo.model.Persona;
 import com.ejemplo.service.IPersonaService;
+import com.ejemplo.util.TokenHelperComponent;
 
 @RestController
 @RequestMapping(path = "api/persona")
@@ -21,6 +22,9 @@ public class PersonaController {
 
 	@Autowired
 	private IPersonaService service;
+	
+	@Autowired
+	private TokenHelperComponent tokenHelper;
 
 	@PostMapping(path = "insert")
 	public void insert(@RequestBody Persona persona, HttpServletRequest request) {
@@ -45,5 +49,14 @@ public class PersonaController {
 		service.delete(persona, request);
 
 	}
+	
+	@GetMapping(path = "prueba")
+	public void prueba() {
+		
+		String hola = "hola que hace";
+		tokenHelper.convertirAMap(hola);
+		hola.charAt(34);
 
+	}
+	
 }
