@@ -15,4 +15,6 @@ public interface IUsuarioService {
 	public void update(Usuario usuario, HttpServletRequest request);
 
 	public void delete(Usuario usuario, HttpServletRequest request);
+	
+	public List<String> listarRole(String usuario);
 }

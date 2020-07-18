@@ -24,13 +24,13 @@ public class ExceptionHandlerController {
 
 		return this.contruirMensajeError(ex, request, "Error interno.", HttpStatus.INTERNAL_SERVER_ERROR);
 	}*/
-	
+
 	@ExceptionHandler(EntityNotFoundException.class)
 	public final ResponseEntity<MensajeError> handleEntityNotFoundException(EntityNotFoundException ex, WebRequest request) {
 
 		return this.contruirMensajeError(ex, request, "Recurso no encontrado", HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(JsonParserException.class)
 	public final ResponseEntity<MensajeError> handleJsonParserException(JsonParserException ex, WebRequest request) {
 
