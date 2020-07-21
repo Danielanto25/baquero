@@ -84,8 +84,10 @@ public class EstudianteCalendarioRepository {
 				Persona persona=new Persona();
 				persona.setNombre(rs.getString("per_nombre"));
 				persona.setCodigo(rs.getInt("per_codigo"));
+				persona.setApellido(rs.getString("per_apellido"));
 				
 				Estudiante estudiante=new Estudiante();
+				estudiante.setCodigo(rs.getInt("est_codigo"));
 				estudiante.setPersona(persona);
 				
 				EstudianteCalendario estudianteCalendario = new EstudianteCalendario();
