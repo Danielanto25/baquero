@@ -63,7 +63,7 @@ public class EstudianteCursoRepository {
 						estudianteCurso.setDefinitiva(rs.getFloat("ecu_definitiva"));
 						estudianteCurso.setCurso(curso);
 						
-						System.out.println(estudianteCurso);
+						
 
 						return estudianteCurso;
 					}

@@ -44,8 +44,9 @@ public class EstudianteRepository {
 		parameter.addValue("usuario", estudiante.getUsuario());
 		parameter.addValue("cliente", estudiante.getCliente());
 		parameter.addValue("persona", estudiante.getPersona().getCodigo());
+		parameter.addValue("estado", estudiante.getEstado());
 
-		String sql = "update estudiante set pro_codigo=:programa,est_cliente=:cliente,est_usuario=:usuario,est_ip=:ip where est_codigo=:codigo;"
+		String sql = "update estudiante set est_estado=:estado, pro_codigo=:programa,est_cliente=:cliente,est_usuario=:usuario,est_ip=:ip where est_codigo=:codigo;"
 				+ "update usuario set usu_estado=:estado,usu_cliente=:cliente,usu_ip=:ip,usu_usu_usuario=:usuario where per_codigo=:persona;";
 
 		namedJdbcTemplate.update(sql, parameter);

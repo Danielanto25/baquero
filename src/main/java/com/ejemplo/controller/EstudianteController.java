@@ -6,10 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,9 +47,9 @@ public class EstudianteController {
 		service.update(estudiante,request);
 	}
 	
-	@GetMapping(path = "listar-codigo/{usuario}")
-	public Estudiante listarCodigo(@PathVariable String usuario) {
+	@GetMapping(path = "listar-codigo")
+	public Estudiante listarCodigo(@RequestHeader("Authorization") String token) {
 
-		return service.listarCodigo(usuario);
+		return service.listarCodigo(token);
 	}
 }

@@ -12,6 +12,7 @@ import com.ejemplo.model.Estudiante;
 import com.ejemplo.repository.EstudianteRepository;
 import com.ejemplo.service.IEstudianteService;
 import com.ejemplo.util.InformacionAuditoriaComponent;
+import com.ejemplo.util.TokenHelperComponent;
 
 @Service
 public class EstudianteServiceImpl implements IEstudianteService{
@@ -21,7 +22,9 @@ public class EstudianteServiceImpl implements IEstudianteService{
 
 	@Autowired
 	private InformacionAuditoriaComponent informacionAuditoriaComponent;
-
+	
+	@Autowired
+	private TokenHelperComponent tokenHelper;
 	
 	
 	
@@ -70,7 +73,9 @@ public class EstudianteServiceImpl implements IEstudianteService{
 
 
 	@Override
-	public Estudiante listarCodigo(String usuario) {
+	public Estudiante listarCodigo(String token) {
+		
+		String usuario=tokenHelper.obtenerUsuarioDelToken(token);
 		
 		return repo.listarCodigo(usuario);
 	}

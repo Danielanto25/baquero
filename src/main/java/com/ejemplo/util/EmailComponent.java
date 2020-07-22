@@ -6,8 +6,10 @@ import java.io.FileReader;
 import java.util.Properties;
 import java.util.Random;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -38,6 +40,11 @@ public class EmailComponent {
 			messageHelper.setTo(email.getDestinatario());
 			messageHelper.setSubject(email.getAsunto());
 			messageHelper.setText(this.build(email.getDescripcion()), true);
+			if(email.getAdjunto()!=null) {
+				
+				messageHelper.addAttachment("adjunto.pdf", new ByteArrayResource(IOUtils.toByteArray(email.getAdjunto())));
+			}
+			//messageHelper.addAttachment(attachmentFilename, dataSource);
 		};
 
 		try {
@@ -64,6 +71,7 @@ public class EmailComponent {
 		return plantillaCorreo;
 	}
 
+	
 	private String obtenerTextoDeArchivo(File file) {
 
 		FileReader fr = null;
