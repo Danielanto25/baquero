@@ -13,4 +13,6 @@ public class Email {
 	private	String descripcion;
 	private	String destinatario[];
 	private InputStream adjunto;
+	private String url;
+	private String extencion;
 }

@@ -3,6 +3,7 @@ package com.ejemplo.util;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 import java.util.Random;
 
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -35,14 +37,27 @@ public class EmailComponent {
 	public void enviar(Email email, boolean lanzarError) {
 
 		MimeMessagePreparator messagePreparator = mimeMessage -> {
-
-			MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+			
+			MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, StandardCharsets.UTF_8.displayName());
+			
+			//MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
 			messageHelper.setTo(email.getDestinatario());
 			messageHelper.setSubject(email.getAsunto());
-			messageHelper.setText(this.build(email.getDescripcion()), true);
+			
 			if(email.getAdjunto()!=null) {
 				
-				messageHelper.addAttachment("adjunto.pdf", new ByteArrayResource(IOUtils.toByteArray(email.getAdjunto())));
+				messageHelper.addAttachment("adjunto."+email.getExtencion(), new ByteArrayResource(IOUtils.toByteArray(email.getAdjunto())));
+				//messageHelper.addInline("url", new InputStreamResource(email.getAdjunto()));
+			}
+			if(email.getUrl()!=null){
+				messageHelper.setText(this.build(email.getDescripcion()), true);
+				
+				FileSystemResource file = new FileSystemResource(email.getUrl());
+				messageHelper.addInline("url", file);
+							
+			}else {
+				
+				messageHelper.setText(this.buildAuxiliar(email.getDescripcion()), true);
 			}
 			//messageHelper.addAttachment(attachmentFilename, dataSource);
 		};
@@ -71,6 +86,17 @@ public class EmailComponent {
 		return plantillaCorreo;
 	}
 
+	private String buildAuxiliar(String descripcion) throws Exception {
+
+		String plantillaCorreo = this
+				.obtenerTextoDeArchivo(new ClassPathResource("static/email_template.html").getFile());
+
+		plantillaCorreo = plantillaCorreo.replaceAll(":descripcion", descripcion);
+
+		return plantillaCorreo;
+	}
+
+	
 	
 	private String obtenerTextoDeArchivo(File file) {
 

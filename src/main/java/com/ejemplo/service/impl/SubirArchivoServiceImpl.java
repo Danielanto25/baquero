@@ -40,18 +40,20 @@ public class SubirArchivoServiceImpl implements ISubirArchivoService{
 		int numero=(int)(Math.random()*200000000+1);
 		File imagen =new File(rutaImagen+"/imagen"+numero+"."+extencion);
 		archivo.transferTo(imagen);
-		
+				
 		ObjectMapper objectMapper=new ObjectMapper();
 		Email email = objectMapper.readValue(json, Email.class);
 		System.out.println(email);
 		
-		
-		System.out.println(imagen.exists());
+		email.setUrl(imagen.getPath().replace('\\' , '/'));
 		
 		InputStream inputStream=new FileInputStream(imagen);
 		email.setAdjunto(inputStream);
 		
 		
+		email.setExtencion(extencion);
+
+		System.out.println(email);
 		
 		emailComponent.enviar(email);
 		

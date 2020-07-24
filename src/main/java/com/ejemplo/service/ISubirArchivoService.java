@@ -12,4 +12,5 @@ public interface ISubirArchivoService {
 	void guardarArchivo(MultipartFile archivo, String json) throws IOException;
 
 	List<TipoTrabajo> apiTipoTrabajo();
+	
 }
